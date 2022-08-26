@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { OnBoardingContext } from "../provider/OnBoardingProvider";
 const onBoardSuccessRegistration = require("../../../assets/images/successRegistration.png");
-const RegsitrationConfirmation = ({onSetPage}:any) => {
+const RegsitrationConfirmation = ({ onSetPage }: any) => {
   const { onBoardingInputs, onUploadChange, onRegister }: any =
     useContext(OnBoardingContext);
   useEffect(() => {}, [onBoardingInputs]);

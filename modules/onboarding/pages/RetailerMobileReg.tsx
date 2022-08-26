@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import MobileNoInput from "../components/MobileNoInput";
 import { OnBoardingContext } from "../provider/OnBoardingProvider";
-import PageController from "../components/PageController";
+import OnBoardingPageController from "../components/OnBoardingPageController";
 
 const RetailerMobileReg = ({onSetPage}:any) => {
   const { onBoardingInputs, onTextInputChange }: any =
@@ -30,7 +30,7 @@ const RetailerMobileReg = ({onSetPage}:any) => {
         />
       </View>
       <View style={{ marginVertical: 30 }}>
-        <PageController next={4} back={3} onSetPage={onSetPage} />
+        <OnBoardingPageController next={4} back={3} onSetPage={onSetPage} />
       </View>
     </View>
   );

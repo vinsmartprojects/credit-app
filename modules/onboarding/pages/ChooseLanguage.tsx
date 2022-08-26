@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 import { Incubator } from "react-native-ui-lib";
 import OnBoardingPageController from "../components/OnBoardingPageController";
-import PageController from "../components/OnBoardingPageController";
+ 
 import {
   enabledLanguages,
   OnBoardingContext,

@@ -6,6 +6,7 @@ import {
   onBoardingTitleThree,
 } from "../../../constants/OnboardingStyle";
 import { OnBoardingContext } from "../provider/OnBoardingProvider";
+import OnBoardingPageController from "../components/OnBoardingPageController";
 
 const RetailerImageUpload = ({onSetPage}:any) => {
   const { onBoardingInputs, onUploadChange }: any =
@@ -25,6 +26,9 @@ const RetailerImageUpload = ({onSetPage}:any) => {
           imageFile={onBoardingInputs?.profileImageFile}
           onUploaded={onUploaded}
         />
+      </View>
+      <View style={{ marginVertical: 30 }}>
+        <OnBoardingPageController next={3} back={2} onSetPage={onSetPage} />
       </View>
     </View>
   );
