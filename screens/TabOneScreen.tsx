@@ -14,7 +14,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
-    <PagerView style={styles.pagerView} initialPage={0}>
+    <PagerView style={styles.pagerView} initialPage={0} showPageIndicator>
   
 
     <View key="1">

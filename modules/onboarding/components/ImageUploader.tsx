@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-const defaultImage = require('../../../assets/images/icon.png');
+const defaultImage = require('../../../assets/images/no-image.jpg');
 export default function ImageUploader() {
     const [image, setImage] = useState(null);
 

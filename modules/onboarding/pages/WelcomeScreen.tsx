@@ -4,10 +4,15 @@ const onboardWelcome = require('../../../assets/images/onboardWelcome.png');
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
-        <Image
-            style={styles.welcomeLogo}
-            source={onboardWelcome}
-        />
+      <View style={{}}>
+        <Image style={styles.welcomeLogo} source={onboardWelcome} />
+      </View>
+      <View style={{}}>
+        <Text> Start Registering Your Retail Business!</Text>
+      </View>
+      <View style={{paddingVertical:15}}>
+        <Text>Goto Dashboard</Text>
+      </View>
     </View>
   )
 }
