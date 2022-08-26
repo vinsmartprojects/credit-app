@@ -1,17 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ImageUploader from "../components/ImageUploader";
+import {
+  onBoardingTitleFour,
+  onBoardingTitleThree,
+} from "../../../constants/OnboardingStyle";
+import { OnBoardingContext } from "../provider/OnBoardingProvider";
 
-const RetailerImageUpload = () => {
+const RetailerImageUpload = ({onSetPage}:any) => {
+  const { onBoardingInputs, onUploadChange }: any =
+    useContext(OnBoardingContext);
+  useEffect(() => {}, [onBoardingInputs]);
+
+  function onUploaded(data: any) {
+    onUploadChange(data);
+  }
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Complete Your Retailer Registraion</Text>
+      <View style={{ paddingVertical: 30 }}>
+        <Text style={onBoardingTitleThree}>Upload Profile Image</Text>
       </View>
       <View>
-        <Text> Profile Image to Get Personal Touch</Text>
+        <ImageUploader
+          imageFile={onBoardingInputs?.profileImageFile}
+          onUploaded={onUploaded}
+        />
       </View>
-      <ImageUploader />
     </View>
   );
 };

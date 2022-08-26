@@ -1,47 +1,58 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import _ from "lodash";
+import React, { useContext, useEffect } from "react";
+import { View, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 import { Incubator } from "react-native-ui-lib";
-
-import { Picker } from "@react-native-picker/picker";
+import OnBoardingPageController from "../components/OnBoardingPageController";
+import PageController from "../components/OnBoardingPageController";
+import {
+  enabledLanguages,
+  OnBoardingContext,
+} from "../provider/OnBoardingProvider";
 type Props = {};
 
-const ChooseLanguage = (props: Props) => {
-  useEffect(() => {}, []);
-  const [selectedLanguage, setSelectedLanguage] = useState();
+const ChooseLanguagePicker = ({ onSetPage }: any) => {
+  const { onBoardingInputs, onTextInputChange }: any =
+    useContext(OnBoardingContext);
+
+  function onLangChanged(data: any) {
+    onTextInputChange({ key: "language", value: data });
+  }
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Choose Your Language</Text>
+      <View style={{}}>
+        <Text
+          style={{
+            color: "#000",
+            fontSize: 25,
+          }}
+        >
+          Choose Your Language
+        </Text>
       </View>
-      <Picker
-        style={{ width: 250 }}
-        mode="dialog"
-        numberOfLines={5}
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
-      >
-        <Picker.Item label="English" value="en" />
-        <Picker.Item label="हिंदी" value="hi" />
-        <Picker.Item label="ಕನ್ನಡ" value="kn" />
-      
-       <Picker.Item label="తెలుగు" value="tl" />
-       
-      </Picker>
+      <View style={{ marginVertical: 30 }}>
+        <Incubator.WheelPicker
+          initialValue={onBoardingInputs?.language}
+          items={enabledLanguages}
+          numberOfVisibleRows={6}
+          onChange={(data: any) => {
+            console.log(data);
+            onLangChanged(data);
+          }}
+        />
+      </View>
+      <View style={{ marginVertical: 30 }}>
+        <OnBoardingPageController next={2} back={1} onSetPage={onSetPage} />
+      </View>
     </View>
   );
 };
 
-export default ChooseLanguage;
+export default ChooseLanguagePicker;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
-    flex: 1,
-  },
-  welcomeLogo: {
-    alignself: "center",
-    width: 250,
-    height: 250,
+    height: Dimensions.get("screen").height,
   },
 });

@@ -13,7 +13,7 @@ import RetailerMobileReg from '../modules/onboarding/pages/RetailerMobileReg';
 import WelcomeScreen from '../modules/onboarding/pages/WelcomeScreen';
 
 
-export default function ModalScreen() {
+export default function RegsitrationModalScreen() {
   return (
     <PagerView style={styles.pagerView} initialPage={0}>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

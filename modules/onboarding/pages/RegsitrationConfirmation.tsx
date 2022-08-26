@@ -1,7 +1,11 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { OnBoardingContext } from "../provider/OnBoardingProvider";
 const onBoardSuccessRegistration = require("../../../assets/images/successRegistration.png");
-const RegsitrationConfirmation = () => {
+const RegsitrationConfirmation = ({onSetPage}:any) => {
+  const { onBoardingInputs, onUploadChange, onRegister }: any =
+    useContext(OnBoardingContext);
+  useEffect(() => {}, [onBoardingInputs]);
   return (
     <View style={styles.container}>
       <View style={{}}>
@@ -10,9 +14,9 @@ const RegsitrationConfirmation = () => {
       <View style={{}}>
         <Text>OnBoarding Successfull!!</Text>
       </View>
-      <View style={{paddingVertical:15}}>
-        <Text>Goto Dashboard</Text>
-      </View>
+      <Pressable style={{ paddingVertical: 15 }} onPress={onRegister}>
+        <Text>Register</Text>
+      </Pressable>
     </View>
   );
 };
