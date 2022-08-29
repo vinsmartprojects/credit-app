@@ -7,8 +7,8 @@ import {
 
 export const OnBoardingContext = React.createContext<
   | {
-      currentPage: boolean;
-    }
+    currentPage: boolean;
+  }
   | undefined
 >(undefined);
 export const enabledLanguages = [
@@ -47,7 +47,7 @@ export function OnBoardingProvider({ children }: { children: JSX.Element }) {
     reducer,
     initOnBoardingInputs
   );
-const [currentStage, setcurrentStage] = useState(0)
+  const [currentStage, setcurrentStage] = useState(0)
   function onTextInputChange(data: any) {
     dispatch({
       type: "TEXT_INPUT_CHANGE",
@@ -64,32 +64,43 @@ const [currentStage, setcurrentStage] = useState(0)
 
   async function onRegister() {
     if (onBoardingInputs?.profileImageFile) {
-      var fileData: any = new FormData();
+      const _profileImageFile = await uploadImage(onBoardingInputs?.profileImageFile, onBoardingInputs?.storeName);
 
-      fileData.append("file", {
-        uri: onBoardingInputs?.profileImageFile,
-        name: onBoardingInputs?.mobile + ".jpeg",
-        type: "image/jpeg",
-      });
-      console.log("fileData", fileData);
-      await axios({
-        method: "POST",
-        url: "http://143.244.130.37:3000/" + "cdn/upload",
-        data: fileData,
-
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-        .then(function (response: any) {
-          console.log("response",response)
-          return { status: response?.status, data: response?.data?.data };
-        })
-        .catch(function (error: any) {
-          console.log("error",error)
-        });
+      console.log(await _profileImageFile)
     }
   }
+
+
+  async function uploadImage(file: any, fileName: any) {
+
+
+    var fileData: any = new FormData();
+
+    fileData.append("file", {
+      uri: file,
+      name: fileName + ".jpeg",
+      type: "image/jpeg",
+    });
+
+    await axios({
+      method: "POST",
+      url: "http://143.244.130.37:3000/" + "cdn/upload",
+      data: fileData,
+
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(function (response: any) {
+
+        return { status: response?.status, data: response?.data?.data };
+      })
+      .catch(function (error: any) {
+        console.log("error", error)
+      });
+  }
+
+
   const value: any = {
     currentStage, setcurrentStage,
     onBoardingInputs: onBoardingInputs,

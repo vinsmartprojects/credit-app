@@ -41,7 +41,7 @@ const ChooseLanguagePicker = ({ onSetPage }: any) => {
         />
       </View>
       <View style={{ marginVertical: 30 }}>
-        <OnBoardingPageController next={2} back={1} onSetPage={onSetPage} />
+        <OnBoardingPageController next={2} back={0} onSetPage={onSetPage} />
       </View>
     </View>
   );

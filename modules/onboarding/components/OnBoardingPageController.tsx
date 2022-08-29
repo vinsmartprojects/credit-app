@@ -5,10 +5,12 @@ type Props = {};
 
 const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
   return (
-    <View>
-      <View style={{ marginVertical: 30 }}>
+   
+      <View style={{ marginVertical: 30,display:"flex" ,flexDirection:'row',alignItems:"stretch" }}>
         <Pressable
           style={{
+          
+            flexGrow:1,
             borderWidth: 0.5,
             borderColor: "#ddd",
             paddingHorizontal: 15,
@@ -23,6 +25,7 @@ const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
         </Pressable>
         <Pressable
           style={{
+            flex:1,
             borderWidth: 0.5,
             borderColor: "#ddd",
             paddingHorizontal: 15,
@@ -33,10 +36,10 @@ const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
             onSetPage(next);
           }}
         >
-          <Text style={{ fontSize: 18 }}>Continue</Text>
+          <Text style={{ fontSize: 18  }}>Continue</Text>
         </Pressable>
       </View>
-    </View>
+    
   );
 };
 
