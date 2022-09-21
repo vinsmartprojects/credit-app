@@ -1,16 +1,27 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-
 type Props = {};
-
-const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
+const OnBoardingPageController = ({
+  hideNext,
+  hideBack,
+  next,
+  back,
+  onSetPage,
+}: any) => {
   return (
-   
-      <View style={{ marginVertical: 30,display:"flex" ,flexDirection:'row',alignItems:"stretch" }}>
+    <View
+      style={{
+        marginVertical: 30,
+        display: "flex",
+
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      {!hideNext && (
         <Pressable
           style={{
-          
-            flexGrow:1,
+            flexGrow: 1,
             borderWidth: 0.5,
             borderColor: "#ddd",
             paddingHorizontal: 15,
@@ -21,11 +32,14 @@ const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
             onSetPage(back);
           }}
         >
-          <Text style={{ fontSize: 18 }}>back</Text>
+          <Text style={{ fontSize: 18 }}>Back </Text>
         </Pressable>
+      )}
+      <View style={{ flexGrow: 1 }}></View>
+      {!hideNext && (
         <Pressable
           style={{
-            flex:1,
+            flexGrow: 1,
             borderWidth: 0.5,
             borderColor: "#ddd",
             paddingHorizontal: 15,
@@ -36,13 +50,18 @@ const OnBoardingPageController = ({ next, back, onSetPage }: any) => {
             onSetPage(next);
           }}
         >
-          <Text style={{ fontSize: 18  }}>Continue</Text>
+          <Text style={{ fontSize: 18 }}>Continue</Text>
         </Pressable>
-      </View>
-    
+      )}
+    </View>
   );
 };
 
 export default OnBoardingPageController;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  bottomContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+});

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { OnBoardingContext } from "../provider/OnBoardingProvider";
+import OnBoardingPageController from "../components/OnBoardingPageController";
 const onBoardSuccessRegistration = require("../../../assets/images/successRegistration.png");
 const RegsitrationConfirmation = ({ onSetPage }: any) => {
   const { onBoardingInputs, onUploadChange, onRegister }: any =
@@ -17,6 +18,10 @@ const RegsitrationConfirmation = ({ onSetPage }: any) => {
       <Pressable style={{ paddingVertical: 15 }} onPress={onRegister}>
         <Text>Register</Text>
       </Pressable>
+
+      <View style={{ marginVertical: 30 }}>
+        <OnBoardingPageController  back={5} onSetPage={onSetPage}  hideNext/>
+      </View>
     </View>
   );
 };

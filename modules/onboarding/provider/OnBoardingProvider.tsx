@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import {
   RemoteAPIResponse,
   remoteDataHandler,
@@ -7,8 +7,8 @@ import {
 
 export const OnBoardingContext = React.createContext<
   | {
-    currentPage: boolean;
-  }
+      currentPage: boolean;
+    }
   | undefined
 >(undefined);
 export const enabledLanguages = [
@@ -47,7 +47,7 @@ export function OnBoardingProvider({ children }: { children: JSX.Element }) {
     reducer,
     initOnBoardingInputs
   );
-  const [currentStage, setcurrentStage] = useState(0)
+  const [currentStage, setcurrentStage] = useState(0);
   function onTextInputChange(data: any) {
     dispatch({
       type: "TEXT_INPUT_CHANGE",
@@ -63,17 +63,50 @@ export function OnBoardingProvider({ children }: { children: JSX.Element }) {
   }
 
   async function onRegister() {
-    if (onBoardingInputs?.profileImageFile) {
-      const _profileImageFile = await uploadImage(onBoardingInputs?.profileImageFile, onBoardingInputs?.storeName);
+    const { profileImage, ...inputs } = onBoardingInputs;
 
-      console.log(await _profileImageFile)
+    const _inputs: any = {
+      user: { mobile: inputs?.mobile, email: inputs?.email },
+      retailer: {
+        storeName: inputs?.storeName,
+        ownerName: inputs?.ownerName,
+        pincode: inputs?.pincode,
+      },
+    };
+    if (onBoardingInputs?.profileImageFile) {
+      const _profileImageFile = await uploadImage(
+        onBoardingInputs?.profileImageFile,
+        onBoardingInputs?.storeName
+      );
+
+      if (await _profileImageFile?.fileName) {
+        _inputs.retailer.profileImage = _profileImageFile?.fileName;
+      }
     }
+    const _newRetailer = await onboard(_inputs);
+    console.log(await _newRetailer)
+  }
+  async function onboard(input: any) {
+    const _uploadedImage = await axios({
+      method: "POST",
+      url: "http://143.244.130.37:3000/" + "retailer/onBoarding",
+      data: input,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response: any) {
+        console.log("response", response);
+        return { status: response?.status, data: response?.data };
+      })
+      .catch(function (error: any) {});
+   /*  await _uploadedImage?.data;
+    if (_uploadedImage?.data?.fileName) {
+      return _uploadedImage?.data;
+    } */
   }
 
-
   async function uploadImage(file: any, fileName: any) {
-
-
     var fileData: any = new FormData();
 
     fileData.append("file", {
@@ -82,32 +115,35 @@ export function OnBoardingProvider({ children }: { children: JSX.Element }) {
       type: "image/jpeg",
     });
 
-    await axios({
+    const _uploadedImage = await axios({
       method: "POST",
       url: "http://143.244.130.37:3000/" + "cdn/upload",
       data: fileData,
-
       headers: {
         "Content-Type": "multipart/form-data",
       },
     })
       .then(function (response: any) {
-
-        return { status: response?.status, data: response?.data?.data };
+        return { status: response?.status, data: response?.data };
       })
-      .catch(function (error: any) {
-        console.log("error", error)
-      });
+      .catch(function (error: any) {});
+    await _uploadedImage?.data;
+    if (_uploadedImage?.data?.fileName) {
+      return _uploadedImage?.data;
+    }
   }
 
-
   const value: any = {
-    currentStage, setcurrentStage,
+    currentStage,
+    setcurrentStage,
     onBoardingInputs: onBoardingInputs,
     onTextInputChange: onTextInputChange,
     onUploadChange: onUploadChange,
     onRegister: onRegister,
   };
+
+  useEffect(() => {}, [value]);
+
   return (
     <OnBoardingContext.Provider value={value}>
       {children}

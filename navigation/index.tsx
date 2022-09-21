@@ -89,8 +89,8 @@ function BottomTabNavigator() {
         name="Home"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
-            tabBarHideOnKeyboard:true,
-        
+          tabBarHideOnKeyboard: true,
+          presentation: "modal",
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (

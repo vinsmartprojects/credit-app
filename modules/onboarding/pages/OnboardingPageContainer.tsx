@@ -38,7 +38,7 @@ const OnboardingPageContainer = (props: Props) => {
       }}
       style={styles.pagerView}
       initialPage={currentStage}
-      scrollEnabled={false}
+      scrollEnabled={true}
     >
       <View key="1">
         <WelcomeScreen onSetPage={onSetPage} />
@@ -47,16 +47,16 @@ const OnboardingPageContainer = (props: Props) => {
         <ChooseLanguage onSetPage={onSetPage} />
       </View>
       <View key="3">
-        <RetailerMobileReg  onSetPage={onSetPage} />
+        <RetailerMobileReg onSetPage={onSetPage} />
       </View>
       <View key="4">
         <RetailerInformation onSetPage={onSetPage} />
       </View>
       <View key="5">
-        <RetailerImageUpload  onSetPage={onSetPage} />
+        <RetailerImageUpload onSetPage={onSetPage} />
       </View>
       <View key="6">
-        <RegsitrationConfirmation onSetPage={onSetPage}   />
+        <RegsitrationConfirmation onSetPage={onSetPage} />
       </View>
     </PagerView>
   );

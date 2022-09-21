@@ -16,7 +16,7 @@ const RetailerInformation = ({onSetPage}:any) => {
   useEffect(() => {}, [onBoardingInputs]);
   return (
     <View style={styles.container}>
-      <View style={{ paddingVertical: 5 }}>
+      <View style={{ paddingVertical: 15 }}>
         <Text style={onBoardingTitleTwo}>Welcome{onBoardingInputs?.language}</Text>
       </View>
       <View style={{ paddingVertical: 5 }}>
@@ -90,7 +90,7 @@ const RetailerInformation = ({onSetPage}:any) => {
         </View>
       </View>
       <View style={{ marginVertical: 30 }}>
-        <OnBoardingPageController next={3} back={2} onSetPage={onSetPage} />
+        <OnBoardingPageController next={4} back={3} onSetPage={onSetPage}   />
       </View>
     </View>
   );

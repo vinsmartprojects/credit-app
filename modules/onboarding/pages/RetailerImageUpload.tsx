@@ -28,7 +28,7 @@ const RetailerImageUpload = ({onSetPage}:any) => {
         />
       </View>
       <View style={{ marginVertical: 30 }}>
-        <OnBoardingPageController next={3} back={2} onSetPage={onSetPage} />
+        <OnBoardingPageController next={5} back={4} onSetPage={onSetPage} />
       </View>
     </View>
   );

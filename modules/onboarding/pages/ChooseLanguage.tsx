@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions, Pressable } from "react-native";
 import { Incubator } from "react-native-ui-lib";
 import OnBoardingPageController from "../components/OnBoardingPageController";
- 
+
 import {
   enabledLanguages,
   OnBoardingContext,
@@ -19,7 +19,7 @@ const ChooseLanguagePicker = ({ onSetPage }: any) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{}}>
+      <View style={{ marginVertical: 45 }}>
         <Text
           style={{
             color: "#000",
@@ -29,7 +29,7 @@ const ChooseLanguagePicker = ({ onSetPage }: any) => {
           Choose Your Language
         </Text>
       </View>
-      <View style={{ marginVertical: 30 }}>
+      <View style={{ marginVertical: 0 }}>
         <Incubator.WheelPicker
           initialValue={onBoardingInputs?.language}
           items={enabledLanguages}
@@ -40,8 +40,8 @@ const ChooseLanguagePicker = ({ onSetPage }: any) => {
           }}
         />
       </View>
-      <View style={{ marginVertical: 30 }}>
-        <OnBoardingPageController next={2} back={0} onSetPage={onSetPage} />
+      <View style={{ marginVertical: 0 }}>
+        <OnBoardingPageController next={3} back={2} onSetPage={onSetPage} />
       </View>
     </View>
   );
@@ -51,7 +51,7 @@ export default ChooseLanguagePicker;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     height: Dimensions.get("screen").height,
   },

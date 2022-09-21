@@ -4,12 +4,10 @@ import MobileNoInput from "../components/MobileNoInput";
 import { OnBoardingContext } from "../provider/OnBoardingProvider";
 import OnBoardingPageController from "../components/OnBoardingPageController";
 
-const RetailerMobileReg = ({onSetPage}:any) => {
+const RetailerMobileReg = ({ onSetPage }: any) => {
   const { onBoardingInputs, onTextInputChange }: any =
     useContext(OnBoardingContext);
-  useEffect(() => {
-    
-  }, [onBoardingInputs]);
+  useEffect(() => {}, [onBoardingInputs]);
 
   function onValueChange(data: any) {
     onTextInputChange({ key: "mobile", value: data });
@@ -17,9 +15,7 @@ const RetailerMobileReg = ({onSetPage}:any) => {
   return (
     <View style={styles.container}>
       <View style={{}}>
-        <Text style={{ fontSize: 20, paddingVertical: 15 }}>
-          Welcome - {onBoardingInputs?.language}
-        </Text>
+        <Text style={{ fontSize: 30, paddingVertical: 15 }}>Welcome</Text>
         <Text style={{ fontSize: 18 }}>Enter Your Mobile Number</Text>
       </View>
       <View style={{ paddingVertical: 30 }}>
@@ -30,7 +26,7 @@ const RetailerMobileReg = ({onSetPage}:any) => {
         />
       </View>
       <View style={{ marginVertical: 30 }}>
-        <OnBoardingPageController next={4} back={3} onSetPage={onSetPage} />
+        <OnBoardingPageController next={3} back={1} onSetPage={onSetPage} />
       </View>
     </View>
   );
@@ -40,7 +36,7 @@ export default RetailerMobileReg;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     paddingHorizontal: 30,
     paddingTop: 125,
     flex: 1,
